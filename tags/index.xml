@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on &gt;&gt;&gt; python4you</title>
+    <link>artemrys.github.io/tags/</link>
+    <description>Recent content in Tags on &gt;&gt;&gt; python4you</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Feb 2019 15:09:32 +0200</lastBuildDate><atom:link href="artemrys.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python</title>
+      <link>artemrys.github.io/tags/python/</link>
+      <pubDate>Tue, 26 Feb 2019 15:09:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RabbitMQ</title>
+      <link>artemrys.github.io/tags/rabbitmq/</link>
+      <pubDate>Tue, 26 Feb 2019 15:09:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/rabbitmq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scrapy</title>
+      <link>artemrys.github.io/tags/scrapy/</link>
+      <pubDate>Tue, 26 Feb 2019 15:09:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/scrapy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Celery</title>
+      <link>artemrys.github.io/tags/celery/</link>
+      <pubDate>Mon, 21 Jan 2019 10:00:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/celery/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Netflix</title>
+      <link>artemrys.github.io/tags/netflix/</link>
+      <pubDate>Mon, 21 Jan 2019 10:00:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/netflix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>artemrys.github.io/tags/configuration/</link>
+      <pubDate>Wed, 19 Dec 2018 11:12:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/configuration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IO Streams</title>
+      <link>artemrys.github.io/tags/io-streams/</link>
+      <pubDate>Wed, 19 Dec 2018 11:12:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/io-streams/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Telegram Bot</title>
+      <link>artemrys.github.io/tags/telegram-bot/</link>
+      <pubDate>Wed, 19 Dec 2018 11:12:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/telegram-bot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heroku</title>
+      <link>artemrys.github.io/tags/heroku/</link>
+      <pubDate>Sat, 15 Dec 2018 18:00:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/heroku/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Exception Handling</title>
+      <link>artemrys.github.io/tags/exception-handling/</link>
+      <pubDate>Tue, 11 Dec 2018 12:11:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/tags/exception-handling/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

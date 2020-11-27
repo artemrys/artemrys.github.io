@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="Artem Rys">
+    <meta name="description" content="Python IO streams: BytesIO and StringIO in practice.
+Celery is probably the most popular task queue/job queue in Python.
+Often you call Celery tasks from Python code. But! You can have a situation when you need to run Celery tasks from another language. The obvious solution is to have a web server (Flask / Django / etc) neer to your Celery code and execute tasks through API calls. But! This is not the ultimate solution.">
+    <meta name="keywords" content="python,blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Calling Celery Tasks not from Python"/>
+<meta name="twitter:description" content="Python IO streams: BytesIO and StringIO in practice.
+Celery is probably the most popular task queue/job queue in Python.
+Often you call Celery tasks from Python code. But! You can have a situation when you need to run Celery tasks from another language. The obvious solution is to have a web server (Flask / Django / etc) neer to your Celery code and execute tasks through API calls. But! This is not the ultimate solution."/>
+
+    <meta property="og:title" content="Calling Celery Tasks not from Python" />
+<meta property="og:description" content="Python IO streams: BytesIO and StringIO in practice.
+Celery is probably the most popular task queue/job queue in Python.
+Often you call Celery tasks from Python code. But! You can have a situation when you need to run Celery tasks from another language. The obvious solution is to have a web server (Flask / Django / etc) neer to your Celery code and execute tasks through API calls. But! This is not the ultimate solution." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="artemrys.github.io/posts/calling-celery-tasks-not-from-python/" />
+<meta property="article:published_time" content="2019-01-21T10:00:32+02:00" />
+<meta property="article:modified_time" content="2019-01-21T10:00:32+02:00" />
+
+
+    <title>
+  Calling Celery Tasks not from Python · &gt;&gt;&gt; python4you
+</title>
+
+    
+      <link rel="canonical" href="artemrys.github.io/posts/calling-celery-tasks-not-from-python/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fork-awesome/1.1.7/css/fork-awesome.min.css" integrity="sha512-9QjPqX/aCNwEQDyMqqMluNOSsHxTwOJNO3d4m5aUeNbyOPm8RcBA5hCUhvGmKFtSmQYGajqPopGtD60FWiWUwg==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+    
+      
+      
+      <link rel="stylesheet" href="/artemrys.github.io/css/coder.min.f01c647a0d25b40da992a37c3376291185eed8a50ced8c26cc2c0bcfe38c97df.css" integrity="sha256-8Bxkeg0ltA2pkqN8M3YpEYXu2KUM7YwmzCwLz&#43;OMl98=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="/artemrys.github.io/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/artemrys.github.io/images/favicon-16x16.png" sizes="16x16">
+
+    <link rel="apple-touch-icon" href="/artemrys.github.io/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/artemrys.github.io/images/apple-touch-icon.png">
+
+    
+
+    <meta name="generator" content="Hugo 0.78.2" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=""
+  >
+    
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/artemrys.github.io">
+      &gt;&gt;&gt; python4you
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/artemrys.github.io/posts/">Blog</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Calling Celery Tasks not from Python</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime='2019-01-21T10:00:32&#43;02:00'>
+                January 21, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+              2-minute read
+            </span>
+          </div>
+          
+          
+          <div class="tags">
+  <i class="fa fa-tag" aria-hidden="true"></i>
+    <a href="/artemrys.github.io/tags/python/">Python</a>
+      <span class="separator">•</span>
+    <a href="/artemrys.github.io/tags/celery/">Celery</a>
+      <span class="separator">•</span>
+    <a href="/artemrys.github.io/tags/netflix/">Netflix</a>
+      <span class="separator">•</span>
+    <a href="/artemrys.github.io/tags/rabbitmq/">RabbitMQ</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>Python IO streams: BytesIO and StringIO in practice.</p>
+<p><img src="/images/calling-celery-tasks-not-from-python-1.jpeg" alt="Photo by Justin Lim on Unsplash"></p>
+<p><a href="https://github.com/celery/celery">Celery</a> is probably <em>the most popular task queue/job queue</em> in Python.</p>
+<p>Often you call Celery tasks from Python code. <strong>But!</strong> You can have a situation when you need to run Celery tasks from another language. The obvious solution is to have a web server (Flask / Django / etc) neer to your Celery code and execute tasks through API calls. <strong>But!</strong> This is not the ultimate solution.</p>
+<p><em>One of my projects at the current job uses Java Netflix stack for the microservices architecture. It uses <a href="https://github.com/Netflix/eureka">Netflix Eureka</a> for the service discovery. So, your Python service should be there too. And here is the problem, cause it is quite difficult to do. Yeah, there are some repos on Github that gives you some kind of integration, <strong>but it is not enough</strong>. If you have some another reason not to use API in this kind of a situation, you can write it down in comments :)</em></p>
+<p>So, our solution is to use <a href="http://docs.celeryproject.org/en/latest/userguide/extending.html">Celery bootsteps</a>. You can override the method that is responsible for the input message handling. We’ll be using RabbitMQ as a message broker.</p>
+<p>Basically, in our example, Celery bootsteps are like the middle part of the Java application and your Celery tasks.</p>
+<p>Now, it is time to look at the code.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> json
+
+<span style="color:#f92672">from</span> celery <span style="color:#f92672">import</span> Celery
+<span style="color:#f92672">from</span> celery <span style="color:#f92672">import</span> bootsteps
+<span style="color:#f92672">from</span> kombu <span style="color:#f92672">import</span> Consumer, Exchange, Queue
+
+queue <span style="color:#f92672">=</span> Queue(<span style="color:#e6db74">&#34;input.queue&#34;</span>, Exchange(<span style="color:#e6db74">&#34;default&#34;</span>), <span style="color:#e6db74">&#34;input.key&#34;</span>)
+
+app <span style="color:#f92672">=</span> Celery(broker<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;amqp://&#34;</span>)
+
+
+<span style="color:#75715e"># Decalring the general input message handler</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InputMessageHandler</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle</span>(self, body):
+        body_json <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(body)
+        _type <span style="color:#f92672">=</span> body_json[<span style="color:#e6db74">&#34;type&#34;</span>]
+        <span style="color:#66d9ef">if</span> _type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ETL&#34;</span>:
+            ETLMessageHandler()<span style="color:#f92672">.</span>handle(body_json)
+
+
+<span style="color:#75715e"># Declaring the ETL message handler</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ETLMessageHandler</span>(object):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle</span>(self, body):
+        <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Working on ETL for message: {0}&#34;</span><span style="color:#f92672">.</span>format(body))
+        <span style="color:#75715e"># Calling out your Celery tasks here</span>
+
+
+<span style="color:#75715e"># Declaring the bootstep for our purposes</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InputMessageConsumerStep</span>(bootsteps<span style="color:#f92672">.</span>ConsumerStep):
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_consumers</span>(self, channel):
+        <span style="color:#66d9ef">return</span> [Consumer(channel,
+                         queues<span style="color:#f92672">=</span>[queue],
+                         callbacks<span style="color:#f92672">=</span>[self<span style="color:#f92672">.</span>handle_message],
+                         accept<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;json&#34;</span>])]
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_message</span>(self, body, message):
+        InputMessageHandler()<span style="color:#f92672">.</span>handle(body)
+        message<span style="color:#f92672">.</span>ack()
+
+
+app<span style="color:#f92672">.</span>steps[<span style="color:#e6db74">&#34;consumer&#34;</span>]<span style="color:#f92672">.</span>add(InputMessageConsumerStep)
+
+
+<span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+    app<span style="color:#f92672">.</span>start()
+</code></pre></div><p>To start Celery worker simply execute:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">python app.py worker -l info
+</code></pre></div><p>Then you’ll see something like this in <a href="https://www.rabbitmq.com/management.html">RabbitMQ UI</a>:</p>
+<p><img src="/images/calling-celery-tasks-not-from-python-2.png" alt="RabbitMQ UI with Celery queues"></p>
+<p>Pay attention to the <code>input.queue</code>. It does accept all the input messages but only reacts to the message that contains:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;ETL&#34;</span>}
+</code></pre></div><p>You can add new handlers to different message types: extend <code>handle</code> method of <strong>InputMessageHandler</strong> class and <strong>add new specific class like</strong> <strong>ETLMessageHandler</strong>.</p>
+<p>Let’s publish a message to <code>input.queue</code> and see what happens.</p>
+<p><img src="/images/calling-celery-tasks-not-from-python-3.png" alt="Printing out the message from ETLMessageHandler"></p>
+<p><img src="/images/calling-celery-tasks-not-from-python-4.png" alt="Publishing message to input.queue"></p>
+<p>It works!</p>
+<h2 id="finally">Finally</h2>
+<p>You can use this approach to build communication between some programming language and Celery through RabbitMQ as a message broker.</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "python4you-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+      
+      
+      
+    </section>
+  </footer>
+
+
+    </main>
+
+    
+      
+        
+        <script src="/artemrys.github.io/js/dark-mode.min.0213e1773e6d1c5a644f847c67a6f8abac49a3776e2976f6008038af8c5b76a1.js"></script>
+      
+    
+
+    
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-131750589-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    
+
+    
+
+    
+  </body>
+
+</html>

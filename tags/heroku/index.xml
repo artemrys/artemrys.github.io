@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Heroku on &gt;&gt;&gt; python4you</title>
+    <link>artemrys.github.io/tags/heroku/</link>
+    <description>Recent content in Heroku on &gt;&gt;&gt; python4you</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 Dec 2018 18:00:32 +0200</lastBuildDate><atom:link href="artemrys.github.io/tags/heroku/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating Telegram Bot and Deploying it to Heroku</title>
+      <link>artemrys.github.io/posts/creating-telegram-bot-and-deploying-it-on-heroku/</link>
+      <pubDate>Sat, 15 Dec 2018 18:00:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/posts/creating-telegram-bot-and-deploying-it-on-heroku/</guid>
+      <description>In this tutorial, we’ll create a simple Telegram Bot using python-telegram-bot and deploy it to Heroku using Heroku Container Registry and Docker.
+All source code is available in Github repository.
+Commands Our bot has 2 commands: /start and /random.
+ Command /start says hello to our new users Command /random sends the random number to the user  Bot import logging import os import random import sys from telegram.ext import Updater, CommandHandler # Enabling logging logging.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Configuration on &gt;&gt;&gt; python4you</title>
+    <link>artemrys.github.io/tags/configuration/</link>
+    <description>Recent content in Configuration on &gt;&gt;&gt; python4you</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 19 Dec 2018 11:12:32 +0200</lastBuildDate><atom:link href="artemrys.github.io/tags/configuration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python IO streams in examples</title>
+      <link>artemrys.github.io/posts/python-io-streams-in-examples/</link>
+      <pubDate>Wed, 19 Dec 2018 11:12:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/posts/python-io-streams-in-examples/</guid>
+      <description>Python IO streams: BytesIO and StringIO in practice.
+We’ll be using Python IO streams: BytesIO and StringIO to execute some tasks from the real world: sending a photo to Telegram Bot and get configuration from Netflix Config Server (now it’s a part of Spring Cloud).
+We are going to cover 2 different stream classes:
+ BytesIO — expects binary-like objects and produces bytes objects StringIO — expects and produces str objects  BytesIO For example, you are writing a Telegram bot that sends your user photos from Unsplash website.</description>
+    </item>
+    
+  </channel>
+</rss>

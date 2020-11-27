@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>artemrys.github.io/</loc>
+    <lastmod>2019-02-26T15:09:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/posts/</loc>
+    <lastmod>2019-02-26T15:09:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/python/</loc>
+    <lastmod>2019-02-26T15:09:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/rabbitmq/</loc>
+    <lastmod>2019-02-26T15:09:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/posts/rabbitmq-scrapy-item-publisher-in-python/</loc>
+    <lastmod>2019-02-26T15:09:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/scrapy/</loc>
+    <lastmod>2019-02-26T15:09:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/</loc>
+    <lastmod>2019-02-26T15:09:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/posts/calling-celery-tasks-not-from-python/</loc>
+    <lastmod>2019-01-21T10:00:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/celery/</loc>
+    <lastmod>2019-01-21T10:00:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/netflix/</loc>
+    <lastmod>2019-01-21T10:00:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/configuration/</loc>
+    <lastmod>2018-12-19T11:12:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/io-streams/</loc>
+    <lastmod>2018-12-19T11:12:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/posts/python-io-streams-in-examples/</loc>
+    <lastmod>2018-12-19T11:12:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/telegram-bot/</loc>
+    <lastmod>2018-12-19T11:12:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/posts/creating-telegram-bot-and-deploying-it-on-heroku/</loc>
+    <lastmod>2018-12-15T18:00:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/heroku/</loc>
+    <lastmod>2018-12-15T18:00:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/tags/exception-handling/</loc>
+    <lastmod>2018-12-11T12:11:32+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>artemrys.github.io/posts/python-try-except-finally-sys-exit-magic/</loc>
+    <lastmod>2018-12-11T12:11:32+02:00</lastmod>
+  </url>
+  
+</urlset>

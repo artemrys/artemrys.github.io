@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Exception Handling on &gt;&gt;&gt; python4you</title>
+    <link>artemrys.github.io/tags/exception-handling/</link>
+    <description>Recent content in Exception Handling on &gt;&gt;&gt; python4you</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Dec 2018 12:11:32 +0200</lastBuildDate><atom:link href="artemrys.github.io/tags/exception-handling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python exception handling and sys.exit magic</title>
+      <link>artemrys.github.io/posts/python-try-except-finally-sys-exit-magic/</link>
+      <pubDate>Tue, 11 Dec 2018 12:11:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/posts/python-try-except-finally-sys-exit-magic/</guid>
+      <description>Some Python magic around sys.exit() function.
+Recently I’ve been at the interview for one big Israel startup. They asked me to read the code below and say what will be in the output.
+import sys def some_func(): ... def _child_process(target): try: target() sys.exit(0) except: print(&amp;#34;Exception&amp;#34;) sys.exit(1) finally: print(&amp;#34;Out&amp;#34;) try: _child_process(some_func) finally: print(&amp;#34;Out2&amp;#34;)  What do you think to be the output after running this code snippet? Is it depend on the body of some_func function?</description>
+    </item>
+    
+  </channel>
+</rss>

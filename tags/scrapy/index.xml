@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scrapy on &gt;&gt;&gt; python4you</title>
+    <link>artemrys.github.io/tags/scrapy/</link>
+    <description>Recent content in Scrapy on &gt;&gt;&gt; python4you</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Feb 2019 15:09:32 +0200</lastBuildDate><atom:link href="artemrys.github.io/tags/scrapy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RabbitMQ Scrapy Item Publisher in Python</title>
+      <link>artemrys.github.io/posts/rabbitmq-scrapy-item-publisher-in-python/</link>
+      <pubDate>Tue, 26 Feb 2019 15:09:32 +0200</pubDate>
+      
+      <guid>artemrys.github.io/posts/rabbitmq-scrapy-item-publisher-in-python/</guid>
+      <description>It’s a small note about the Scrapy Item Pipeline that publishes a Scrapy Item to the RabbitMQ.
+If you are interested in parsing/scraping projects in Python, you should know about Scrapy. Let’s imagine that your project is something bigger than a one-time data extraction. This means that you need to do something with your data. One of the possible approaches is to use RabbitMQ to publish items to some queue. This method can help you to build a custom consumer that can process Scrapy items.</description>
+    </item>
+    
+  </channel>
+</rss>
